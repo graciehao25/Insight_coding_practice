@@ -17,7 +17,7 @@ def get_idx(input_file_path,filter_str,features_list):
             for col_name in col_names:
                 if col_name.endswith(feature):
                     features_idx.append(col_names.index(col_name))
-
+    return filter_idx,features_idx
 def feature_list(input_file_path,filter_idx,filter_condition, feature_idx):
     """
     filter the dataframe by status, create a list for each feature.
@@ -33,7 +33,7 @@ def feature_list(input_file_path,filter_idx,filter_condition, feature_idx):
             lines += 1
             # row[24] is the str indicates the job title
             list_of_feature.append(row[feature_idx]) 
-    return list_of_feature
+    return lines,list_of_feature
 
 def main(INPUT, OUTPUT0, OUTPUT1):
     """
@@ -54,11 +54,11 @@ def main(INPUT, OUTPUT0, OUTPUT1):
     assuming the filter variable is "STATUS", and st
     get the filter variable index and a list of feature indices
     """
-    get_idx(INPUT,filter_str,features_list)
+    filter_idx,features_idx=get_idx(INPUT,filter_str,features_list)
 
-    list_of_jobs=feature_list(INPUT,2,filter_condition,24)
-    list_of_states=feature_list(INPUT,2,filter_condition,50)
-    num_of_entries=10
+    num_of_entries,list_of_jobs=feature_list(INPUT,filter_idx,filter_condition,features_idx[0])
+    num_of_entries,list_of_states=feature_list(INPUT,filter_idx,filter_condition,features_idx[1])
+    
     #Create frequency dictionaries
     job_count_dict=dict(Counter(list_of_jobs))
     state_count_dict=dict(Counter(list_of_states))
@@ -76,13 +76,13 @@ def main(INPUT, OUTPUT0, OUTPUT1):
     output_cols_2=["TOP_STATES", "NUMBER_CERTIFIED_APPLICATIONS", "PERCENTAGE"]
     output_cols= [output_cols_1,output_cols_2]
 
-    rows = [ {output_cols_1[0]:k, output_cols_1[1]:str(v), output_cols_1[2]:"{:.1%}".format(v/float(10))} for(k,v) in top_X_occupations ]
+    rows = [ {output_cols_1[0]:k, output_cols_1[1]:str(v), output_cols_1[2]:"{:.1%}".format(v/float(num_of_entries))} for(k,v) in top_X_occupations]
     with open(OUTPUT0, 'w') as csvfile:
         fp = csv.DictWriter(csvfile, fieldnames = output_cols_1, delimiter=';')
         fp.writeheader()
         fp.writerows(rows)
 
-    rows = [ {output_cols_2[0]:k, output_cols_2[1]:str(v), output_cols_2[2]:"{:.1%}".format(v/float(10))} for(k,v) in top_X_states ]
+    rows = [ {output_cols_2[0]:k, output_cols_2[1]:str(v), output_cols_2[2]:"{:.1%}".format(v/float(num_of_entries))} for(k,v) in top_X_states ]
     with open(OUTPUT1, 'w') as csvfile:
         fp = csv.DictWriter(csvfile, fieldnames = output_cols_2, delimiter=';')
         fp.writeheader()
