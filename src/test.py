@@ -1,40 +1,8 @@
-
 import csv
 import sys
-import glob
-import operator
 from collections import Counter
-
-def get_idx(input_file_path,filter_str,features_list):
-    features_idx=[]
-    with open(input_file_path) as csv_file: 
-        reader=csv.DictReader(csv_file,delimiter=";")
-        col_names = reader.fieldnames
-        for col_name in col_names:
-            if col_name.endswith(filter_str):
-                filter_idx = col_names.index(col_name)
-        for feature in features_list:
-            for col_name in col_names:
-                if col_name.endswith(feature):
-                    features_idx.append(col_names.index(col_name))
-    return filter_idx,features_idx
-def feature_list(input_file_path,filter_idx,filter_condition, feature_idx):
-    """
-    filter the dataframe by status, create a list for each feature.
-
-    """
-    list_of_feature=[]
-    lines=0
-    with open(input_file_path) as csv_file: 
-        reader = csv.reader(csv_file,delimiter=';')
-        filtered_df = filter(lambda col: filter_condition == col[filter_idx], reader)
-        # row is a list of strings; 
-        for row in filtered_df:
-            lines += 1
-            # row[24] is the str indicates the job title
-            list_of_feature.append(row[feature_idx]) 
-    return lines,list_of_feature
-
+from get_idx import get_idx
+from feature_list import feature_list
 def main(INPUT, OUTPUT0, OUTPUT1):
     """
     The main funciton will 
