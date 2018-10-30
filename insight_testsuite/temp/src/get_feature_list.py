@@ -1,5 +1,5 @@
 import csv
-def feature_list(input_file_path,filter_idx,filter_condition, feature_idx):
+def get_feature_list(input_file_path,filter_idx,filter_condition, feature_idx):
     """
     filter the dataframe by status, create a list for each feature.
 

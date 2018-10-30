@@ -48,21 +48,21 @@ Besides__`csv, sys, collections`__ which are included in python standard distrib
 
 The directory structure for this repo should is as follows:
 ```
-      ├── README.md 
-      ├── run.sh
-      ├── src
+      └── README.md 
+      └── run.sh
+      └── src
       │   └──main.py
       │   └──get_idx.py
       │   └──feature_list.py
-      ├── input
+      └── input
       │   └──h1b_input.csv
-      ├── output
+      └── output
       │   └── top_10_occupations.txt
       │   └── top_10_states.txt
-      │── insight_testsuite
+      └── insight_testsuite
           └── run_tests.sh
           └── tests
-              │── test_1
+              └── test_1
               │   └── input
               │   |   └──h1b_input.csv
               │   └── output
