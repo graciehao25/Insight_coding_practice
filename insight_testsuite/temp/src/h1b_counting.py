@@ -50,12 +50,46 @@ for(k,v)in top_10_states:
 states_file = open(sys.argv[3], 'w')
 for triplet in top_10_states_triplets:
     line = ';'.join(str(x) for x in triplet)
-    states_file.write(line + ';\n')
+    states_file.write(line + '\n')
 states_file.close()
 # write top_10_occupations.txt
 jobs_file = open(sys.argv[2], 'w')
 for triplet in top_10_occupations_triplets:
     line = ';'.join(str(x) for x in triplet)
-    jobs_file.write(line + ';\n')
+    jobs_file.write(line + '\n')
 jobs_file.close()
+
+def write_top_x_txt(outpath, names, top_x_dict, sum_n):
+    """
+    function that creates an output file.
+    """
+    rows = [ {names[0]:v, names[1]:str(freq[v]), names[2]:"{:.1%}".format(freq[v]/float(n))} for v in topk ]
+    with open(path, 'w') as csvfile:
+        fp = csv.DictWriter(csvfile, fieldnames = names, delimiter=';')
+        fp.writeheader()
+        fp.writerows(rows)
+
+
+def main(INPUT, OUTPUT0, OUTPUT1):
+    """
+    Main function contains three steps:
+    1. Specify to find top 10 states and occupations in certified applications;
+    2. Call function "find_topK" to find top 10 records;
+    3. Call function "save_output" to generate two output files respective for top 10 states and occupations.
+    """
+    outputs = [OUTPUT0, OUTPUT1]
+    output_cols_1=["TOP_OCCUPATIONS", "NUMBER_CERTIFIED_APPLICATIONS", "PERCENTAGE"]
+    output_cols_2=["TOP_STATES", "NUMBER_CERTIFIED_APPLICATIONS", "PERCENTAGE"]
+    output_cols= [output_cols_1,output_cols_2]
+
+    for output in outputs:
+
+
+if __name__ == '__main__':
+    INPUT = sys.argv[1]
+    OUTPUT1 = sys.argv[2]
+    OUTPUT2 = sys.argv[3]
+    main(INPUT, OUTPUT0, OUTPUT1)
+
+
 

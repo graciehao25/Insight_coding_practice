@@ -1,2 +1,0 @@
-[Mon Oct 29 18:33:44 CDT 2018] 1 of 2 tests passed
-[Mon Oct 29 18:43:30 CDT 2018] 1 of 2 tests passed
