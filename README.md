@@ -3,12 +3,9 @@
 # Table of Contents
 1. [Goal](README.md#goal)
 2. [Problem](README.md#problem)
-3. [Approach](README.md#approach) 
-4. [Run Instructions](README.md#run-instructions)
-5. [Input](README.md#input)
-6. [Output](README.md#output)
-7. [Repo Directory Structure](README.md#repo-directory-structure)
-8. [Author](README.md#author)
+3. [Run Instructions](README.md#run-instructions)
+4. [Code Descriptions](README.md#code-descriptions) 
+5. [Author](README.md#author)
 
 
 # Goal
@@ -19,74 +16,66 @@ The solution (software code) is located in the directory src: https://github.com
 
 A newspaper editor was researching immigration data trends on H1B(H-1B, H-1B1, E-3) visa application processing over the past years, trying to identify the occupations and states with the most number of approved H1B visas. She has found statistics available from the US Department of Labor and its [Office of Foreign Labor Certification Performance Data](https://www.foreignlaborcert.doleta.gov/performancedata.cfm#dis). But while there are ready-made reports for [2018](https://www.foreignlaborcert.doleta.gov/pdf/PerformanceData/2018/H-1B_Selected_Statistics_FY2018_Q4.pdf) and [2017](https://www.foreignlaborcert.doleta.gov/pdf/PerformanceData/2017/H-1B_Selected_Statistics_FY2017.pdf), the site doesn’t have them for past years. 
 
-# Approach
-
-The code was tested with Python (v3.6.5).
-
 
 # Run Instructions 
+## python version
+The code was tested with Python (v3.6.5).
+## How to start the programs
+To run the program, run the `run.sh`. It will evoke the `./src/main.py`.
+## Customization 
+User can change the _filter criteria_, _features of interests_, and _how many top features to keep_ in `./src/main.py`.
 
-# Input 
+# Code Descriptions
+## Main Function
+Main function contains six steps:
+    1. figure out the column indices of the a list of features 
+    2. filter the dataframe by status, create a list for each feature.
+    3. Create frequency dictionary for each feature
+    4. Sort dictionary by vaule(desc) and alphabet(asc)
+    5. crop the dictionary and keep only TOP X
+    6. Save the output
 
-A .csv data ("h1b_input.csv") used to test the solution to the Problem above is a subset of a Raw dataset(H1B_FY_2014.csv) provided in form of Excel files with a semicolon separated (";") format and placed into this Google drive [folder](https://drive.google.com/drive/folders/1Nti6ClUfibsXSQw5PUIWfVGSIrpuwyxf?usp=sharing). 
-A sample test input data is in the folder 
-https://github.com/eachabys/challenge_H1b/tree/master/input
-The tests were run on a local machine. 
-However changing the input/output fields of the code will produce custom results.
+##Inputs of the main function
+Inputs of the main function:
+    1. an INPUT csv file of interests
+    2. OUTPUT0 named 'top_10_occupations.txt'
+    3. OUTPUT1 named 'top_10_states.txt'
 
+## Modules Used
+Besides__`csv, sys, collections`__ which are included in python standard distribution, the main funciton will call two other functions I wrote stored under the src folder:
+    1. get_idx to get the indices for the filter variable and features
+    2. feature_list to filter the dataframe by status, create a list for each feature.
 
-
-# Output 
-The `./src/h1b_counting.py` will generate two txt files:
-* `./output/top_10_occupations.txt`: Top 10 occupations for certified visa applications
-* `./output/top_10_states.txt`: Top 10 states for certified visa applications
-
-Each line holds one record and each field on each line is separated by a semicolon (;).
-
-Each line of the `top_10_occupations.txt` file contain these fields in this order:
-1. __`TOP_OCCUPATIONS`__: The occupation name associated with an application's Standard Occupational Classification (SOC) code. The occupation name corresponds to the "SOC_NAME" field in the header of the input file.
-2. __`NUMBER_CERTIFIED_APPLICATIONS`__: Number of applications that have been certified for that occupation. An application is considered certified if it has a case status of `CERTIFIED`
-3. __`PERCENTAGE`__: % of applications that have been certified for that occupation compared to total number of certified applications regardless of occupation. 
-
-The records in the ouput files are sorted by __`NUMBER_CERTIFIED_APPLICATIONS`__, and in case of a tie, alphabetically by __`TOP_OCCUPATIONS`__.
-
-Each line of the `top_10_states.txt` file contain these fields in this order:
-1. __`TOP_STATES`__: State where the work will take place. The state corresponds to "WORKSITE_STATE" field in the header of the input file.
-2. __`NUMBER_CERTIFIED_APPLICATIONS`__: Number of applications that have been certified for work in that state. An application is considered certified if it has a case status of `CERTIFIED`
-3. __`PERCENTAGE`__: % of applications that have been certified in that state compared to total number of certified applications regardless of state.
-
-The records in this file are sorted by __`NUMBER_CERTIFIED_APPLICATIONS`__ field, and in case of a tie, alphabetically by __`TOP_STATES`__. 
-
-Percentages are rounded to 1 decimal. 
-
-# Repo Directory Structure
+## Repo Directory Structure
 
 The directory structure for this repo should is as follows:
 ```
       ├── README.md 
       ├── run.sh
       ├── src
-      │   └──h1b_topmetrics.py
+      │   └──main.py
+      │   └──get_idx.py
+      │   └──feature_list.py
       ├── input
       │   └──h1b_input.csv
       ├── output
-      |   └── top_10_occupations.txt
-      |   └── top_10_states.txt
-      ├── insight_testsuite
+      │   └── top_10_occupations.txt
+      │   └── top_10_states.txt
+      │── insight_testsuite
           └── run_tests.sh
           └── tests
-              └── test_1
-              |   └── input
-              |   |   └──h1b_input.csv
-              |   └── output
-              |   |   └── top_10_occupations.txt
-              |   |   └── top_10_states.txt
+              │── test_1
+              │   └── input
+              │   |   └──h1b_input.csv
+              │   └── output
+              │       └── top_10_occupations.txt
+              │       └── top_10_states.txt
               └── Gracie_test_1
                   └── input
                   |   └──h1b_input.csv
                   └── output
-                  |   └── top_10_occupations.txt
-                  |   └── top_10_states.txt
+                      └── top_10_occupations.txt
+                      └── top_10_states.txt
 
 ```
 # Author

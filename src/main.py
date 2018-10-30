@@ -5,14 +5,20 @@ from get_idx import get_idx
 from feature_list import feature_list
 def main(INPUT, OUTPUT0, OUTPUT1):
     """
-    The main funciton will 
-    Main function contains three steps:
-    1. figure out the column indices of the a list of features 
-    2. filter the dataframe by status, create a list for each feature.
-    3. Create frequency dictionary for each feature
-    4. Sort dictionary by vaule(desc) and alphabet(asc)
-    5. crop the dictionary and keep only TOP X
-    6. Save the output
+    Main function contains six steps:
+        1. figure out the column indices of the a list of features 
+        2. filter the dataframe by status, create a list for each feature.
+        3. Create frequency dictionary for each feature
+        4. Sort dictionary by vaule(desc) and alphabet(asc)
+        5. crop the dictionary and keep only TOP X
+        6. Save the output
+    Inputs of the main function:
+        1. an INPUT csv file of interests
+        2. OUTPUT0 named 'top_10_occupations.txt'
+        3. OUTPUT1 named 'top_10_states.txt'
+    The main funciton will call two other functions I wrote stored under the src folder:
+        1. get_idx to get the indices for the filter variable and features
+        2. feature_list to filter the dataframe by status, create a list for each feature.
     """
     X=10
     filter_str="STATUS"
