@@ -24,7 +24,7 @@ To run the program, run the `run.sh`. It will evoke the `./src/main.py`.
 User can change specifications including **filter criteria**, **features of interests**, and **how many top features to keep** in `./src/main.py`.
 
 # Code Descriptions
-## Main Function
+## Main Script
 Main function contains six steps:
   1. Figure out the column indices of the a list of features 
   2. Filter the dataframe by status, create a list for each feature.
@@ -33,8 +33,8 @@ Main function contains six steps:
   5. Crop the dictionary and keep only TOP X
   6. Save the output
 
-## Inputs of the main function
-Inputs of the main function:
+## Inputs of The Main Script
+
   1. An INPUT csv file of interests
   2. OUTPUT0 named 'top_10_occupations.txt'
   3. OUTPUT1 named 'top_10_states.txt'
