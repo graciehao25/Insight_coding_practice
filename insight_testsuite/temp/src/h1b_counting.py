@@ -50,12 +50,12 @@ for(k,v)in top_10_states:
 states_file = open(sys.argv[3], 'w')
 for triplet in top_10_states_triplets:
     line = ';'.join(str(x) for x in triplet)
-    states_file.write(line + '\n')
+    states_file.write(line + ';\n')
 states_file.close()
 # write top_10_occupations.txt
 jobs_file = open(sys.argv[2], 'w')
 for triplet in top_10_occupations_triplets:
     line = ';'.join(str(x) for x in triplet)
-    jobs_file.write(line + '\n')
+    jobs_file.write(line + ';\n')
 jobs_file.close()
 
