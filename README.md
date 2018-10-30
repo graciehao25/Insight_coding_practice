@@ -9,27 +9,28 @@
 
  
 # Goal
-The repository provides a solution to the Insight Data Science code challenge. 
-python script can be found at https://github.com/graciehao25/Insight_coding_practice/tree/master/src
+This repository provides a solution to the Insight Data Science code challenge. 
+
+The solution python script can be found at https://github.com/graciehao25/Insight_coding_practice/tree/master/src
 # Problem
 Detailed descripition of the coding challenge can be found here: https://github.com/InsightDataScience/h1b_statistics
 
 # Run Instructions 
 ## Python Version
 The code was tested with Python (v3.6.5).
-## How to start the programs
+## How to Start the Program
 To run the program, run the `run.sh`. It will evoke the `./src/main.py`.
 ## Customization 
-User can customize the **filter criteria**, **features of interests**, and **how many top features to keep** in `./src/main.py`.
+User can change specifications including **filter criteria**, **features of interests**, and **how many top features to keep** in `./src/main.py`.
 
 # Code Descriptions
 ## Main Function
 Main function contains six steps:
-  1. figure out the column indices of the a list of features 
-  2. filter the dataframe by status, create a list for each feature.
+  1. Figure out the column indices of the a list of features 
+  2. Filter the dataframe by status, create a list for each feature.
   3. Create frequency dictionary for each feature
-  4. Sort dictionary by vaule(desc) and alphabet(asc)
-  5. crop the dictionary and keep only TOP X
+  4. Sort dictionary by value (desc) and key alphabet (asc)
+  5. Crop the dictionary and keep only TOP X
   6. Save the output
 
 ##Inputs of the main function
