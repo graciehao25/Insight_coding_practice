@@ -20,7 +20,7 @@ The code was tested with Python (v3.6.5).
 ## How to start the programs
 To run the program, run the `run.sh`. It will evoke the `./src/main.py`.
 ## Customization 
-User can change the _filter criteria_, _features of interests_, and _how many top features to keep_ in `./src/main.py`.
+User can change the **filter criteria**, _features of interests_, and _how many top features to keep_ in `./src/main.py`.
 
 # Code Descriptions
 ## Main Function
