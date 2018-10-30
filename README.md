@@ -33,16 +33,16 @@ Main function contains six steps:
   5. Crop the dictionary and keep only TOP X
   6. Save the output
 
-##Inputs of the main function
+## Inputs of the main function
 Inputs of the main function:
-  1. an INPUT csv file of interests
+  1. An INPUT csv file of interests
   2. OUTPUT0 named 'top_10_occupations.txt'
   3. OUTPUT1 named 'top_10_states.txt'
 
 ## Modules Used
 Besides__`csv, sys, collections`__ which are included in python standard distribution, the main funciton will call two other functions I wrote stored under the src folder:
-  1. get_idx to get the indices for the filter variable and features
-  2. feature_list to filter the dataframe by status, create a list for each feature.
+  1. `get_idx.py` to get the indices for the filter variable and features
+  2. `feature_list.py` to filter the dataframe by status, create a list for each feature.
 
 ## Repo Directory Structure
 
