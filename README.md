@@ -1,4 +1,4 @@
-# H1b_Coding Challenge
+# Insight Data Science Coding Challenge
 
 # Table of Contents
 1. [Goal](README.md#goal)
@@ -57,11 +57,11 @@ Each line of the `top_10_states.txt` file contain these fields in this order:
 
 The records in this file are sorted by __`NUMBER_CERTIFIED_APPLICATIONS`__ field, and in case of a tie, alphabetically by __`TOP_STATES`__. 
 
-Percentages is rounded to 1 decimal. 
+Percentages are rounded to 1 decimal. 
 
 # Repo Directory Structure
 
-The directory structure for your repo should look like this:
+The directory structure for this repo should is as follows:
 ```
       ├── README.md 
       ├── run.sh
@@ -74,8 +74,8 @@ The directory structure for your repo should look like this:
       |   └── top_10_states.txt
       ├── insight_testsuite
           └── run_tests.sh
-          └── texts
-              └── text_1
+          └── tests
+              └── test_1
               |   └── input
               |   |   └──h1b_input.csv
               |   └── output
@@ -94,4 +94,5 @@ The directory structure for your repo should look like this:
 Hui (Gracie) Hao, Ph.D. Candidate, Department of Economics, Vanderbilt University, Nashville, TN, USA.
 
 Email: hui.hao@vanderbilt.edu and graciehao25@gmail.com
+
 LinkedIn: https://www.linkedin.com/in/gracie-hao-5b46a564/
