@@ -1,61 +1,36 @@
-
 import csv
 import sys
-import glob
-import operator
 from collections import Counter
-
-def get_idx(input_file_path,filter_str,features_list):
-    features_idx=[]
-    with open(input_file_path) as csv_file: 
-        reader=csv.DictReader(csv_file,delimiter=";")
-        col_names = reader.fieldnames
-        for col_name in col_names:
-            if col_name.endswith(filter_str):
-                filter_idx = col_names.index(col_name)
-        for feature in features_list:
-            for col_name in col_names:
-                if col_name.endswith(feature):
-                    features_idx.append(col_names.index(col_name))
-    return filter_idx,features_idx
-def feature_list(input_file_path,filter_idx,filter_condition, feature_idx):
-    """
-    filter the dataframe by status, create a list for each feature.
-
-    """
-    list_of_feature=[]
-    lines=0
-    with open(input_file_path) as csv_file: 
-        reader = csv.reader(csv_file,delimiter=';')
-        filtered_df = filter(lambda col: filter_condition == col[filter_idx], reader)
-        # row is a list of strings; 
-        for row in filtered_df:
-            lines += 1
-            # row[24] is the str indicates the job title
-            list_of_feature.append(row[feature_idx]) 
-    return lines,list_of_feature
-
+from get_idx import get_idx
+from feature_list import feature_list
 def main(INPUT, OUTPUT0, OUTPUT1):
     """
-    The main funciton will 
-    Main function contains three steps:
-    1. figure out the column indices of the a list of features 
-    2. filter the dataframe by status, create a list for each feature.
-    3. Create frequency dictionary for each feature
-    4. Sort dictionary by vaule(desc) and alphabet(asc)
-    5. crop the dictionary and keep only TOP X
-    6. Save the output
+    Main function contains six steps:
+        1. figure out the column indices of the a list of features 
+        2. filter the dataframe by status, create a list for each feature.
+        3. Create frequency dictionary for each feature
+        4. Sort dictionary by vaule(desc) and alphabet(asc)
+        5. crop the dictionary and keep only TOP X
+        6. Save the output
+    Inputs of the main function:
+        1. an INPUT csv file of interests
+        2. OUTPUT0 named 'top_10_occupations.txt'
+        3. OUTPUT1 named 'top_10_states.txt'
+    The main funciton will call two other functions I wrote stored under the src folder:
+        1. get_idx to get the indices for the filter variable and features
+        2. feature_list to filter the dataframe by status, create a list for each feature.
     """
+    # Specs user can customize
     X=10
     filter_str="STATUS"
     filter_condition="CERTIFIED"
     features_list=["SOC_NAME","WORKSITE_STATE"]
     """
+    idx in the original data file 
     assuming the filter variable is "STATUS", and st
     get the filter variable index and a list of feature indices
     """
     filter_idx,features_idx=get_idx(INPUT,filter_str,features_list)
-
     num_of_entries,list_of_jobs=feature_list(INPUT,filter_idx,filter_condition,features_idx[0])
     num_of_entries,list_of_states=feature_list(INPUT,filter_idx,filter_condition,features_idx[1])
     

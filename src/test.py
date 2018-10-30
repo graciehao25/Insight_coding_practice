@@ -31,20 +31,25 @@ def main(INPUT, OUTPUT0, OUTPUT1):
     get the filter variable index and a list of feature indices
     """
     filter_idx,features_idx=get_idx(INPUT,filter_str,features_list)
-    num_of_entries,list_of_jobs=feature_list(INPUT,filter_idx,filter_condition,features_idx[0])
-    num_of_entries,list_of_states=feature_list(INPUT,filter_idx,filter_condition,features_idx[1])
+
+    # iter thru a list of features
+    a_list_of_feature_list=[]
+    for i in range(len(features_list)):
+        #use self-written function feature_list to filter the dataframe by status, create a list for each feature.
+        num_of_entries,feature_list=feature_list(INPUT,filter_idx,filter_condition,features_idx[i])
+        a_list_of_feature_list.append(feature_list)
     
-    #Create frequency dictionaries
-    job_count_dict=dict(Counter(list_of_jobs))
-    state_count_dict=dict(Counter(list_of_states))
-    #Sort the dictionary by vaule(desc) and alphabet(asc)
-    state_count_dict=sorted(state_count_dict.items(), key=lambda x: (-x[1],x[0]))
-    job_count_dict=sorted(job_count_dict.items(), key=lambda x: (-x[1],x[0]))
-    # a list of tuples like [('FL', 2), ('AL', 1),...]
-    top_X_states=state_count_dict[:X]
-    # a list of tuples like [('SOFTWARE DEVELOPERS, APPLICATIONS', 6),...]
-    top_X_occupations=job_count_dict[:X]
-    #create an empty list of tuples [(job, counts, %)]
+        #Create frequency dictionaries
+        job_count_dict=dict(Counter(list_of_jobs))
+        state_count_dict=dict(Counter(list_of_states))
+        #Sort the dictionary by vaule(desc) and alphabet(asc)
+        state_count_dict=sorted(state_count_dict.items(), key=lambda x: (-x[1],x[0]))
+        job_count_dict=sorted(job_count_dict.items(), key=lambda x: (-x[1],x[0]))
+        # a list of tuples like [('FL', 2), ('AL', 1),...]
+        top_X_states=state_count_dict[:X]
+        # a list of tuples like [('SOFTWARE DEVELOPERS, APPLICATIONS', 6),...]
+        top_X_occupations=job_count_dict[:X]
+        #create an empty list of tuples [(job, counts, %)]
 
     outputs = [OUTPUT0, OUTPUT1]
     output_cols_1=["TOP_OCCUPATIONS", "NUMBER_CERTIFIED_APPLICATIONS", "PERCENTAGE"]
